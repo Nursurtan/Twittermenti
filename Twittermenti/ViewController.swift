@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import SwifteriOS
+
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sentimentLabel: UILabel!
+    
+    let swifter = Swifter(consumerKey: "LTReJyreyyuz4SWjVABuA1WKI", consumerSecret: "ajf107xfd6869heCG8Ptn8iztfFHBWPIxLkFGvsmoEwI7MKZcz")
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        swifter.searchTweet(using: "@Apple") { (results, metadata) in
+            print(results)
+        } failure: { (error) in
+            print("There was an error with the Twitter API Request, \(error)")
+        }
+
         
     }
 
